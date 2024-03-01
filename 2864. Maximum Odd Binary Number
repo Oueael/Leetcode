@@ -1,0 +1,49 @@
+2864. Maximum Odd Binary Number
+Easy
+Topics
+Companies
+Hint
+
+You are given a binary string s that contains at least one '1'.
+
+You have to rearrange the bits in such a way that the resulting binary number is the maximum odd binary number that can be created from this combination.
+
+Return a string representing the maximum odd binary number that can be created from the given combination.
+
+Note that the resulting string can have leading zeros.
+
+ 
+
+Example 1:
+
+Input: s = "010"
+Output: "001"
+Explanation: Because there is just one '1', it must be in the last position. So the answer is "001".
+
+Example 2:
+
+Input: s = "0101"
+Output: "1001"
+Explanation: One of the '1's must be in the last position. The maximum number that can be made with the remaining digits is "100". So the answer is "1001".
+
+ 
+
+Constraints:
+
+    1 <= s.length <= 100
+    s consists only of '0' and '1'.
+    s contains at least one '1'.
+
+function maximumOddBinaryNumber(s) {
+  // Count the total number of '1's in the input string.
+  const onesCount = s.split('').filter(char => char === '1').length;
+
+  // If there is only one '1', the maximum odd binary number is just '1' at the last position.
+  if (onesCount === 1) {
+    return '0'.repeat(s.length - 1) + '1';
+  } else {
+    // If there are multiple '1's, place one '1' at the end to ensure the number is odd,
+    // and place the rest of the '1's at the beginning to maximize the number.
+    return '1'.repeat(onesCount - 1) + '0'.repeat(s.length - onesCount) + '1';
+  }
+}
