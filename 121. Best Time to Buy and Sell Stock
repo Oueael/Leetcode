@@ -1,0 +1,31 @@
+121. Best Time to Buy and Sell Stock
+Easy
+Topics
+Companies
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+function maxProfit(prices) {
+    let minPrice = Infinity; // Initialize minPrice to infinity
+    let maxProfit = 0; // Initialize maxProfit to 0
+    
+    // Loop through each price in the prices array
+    for (let price of prices) {
+        // If the current price is lower than minPrice, update minPrice
+        if (price < minPrice) {
+            minPrice = price;
+        } 
+        // Otherwise, calculate the profit if the current price is sold and compare with maxProfit
+        else if (price - minPrice > maxProfit) {
+            // Update maxProfit if the profit is higher
+            maxProfit = price - minPrice;
+        }
+    }
+    
+    // Return the maximum profit found
+    return maxProfit
+    }
