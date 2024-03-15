@@ -36,7 +36,17 @@ Constraints:
     -109 <= nums[i] <= 109
     -109 <= target <= 109
     Only one valid answer exists.
-
+========================================
+function twoSum(nums, target) {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] === target) {
+        return [i, j];
+      }
+    }
+  }
+}
+=========================================
 
 function twoSum(nums, target) {
     let numMap = {}; // Create an object to hold the number and its index
