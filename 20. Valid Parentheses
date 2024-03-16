@@ -1,0 +1,41 @@
+20. Valid Parentheses
+Easy
+Topics
+Companies
+Hint
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+    Open brackets must be closed by the same type of brackets.
+    Open brackets must be closed in the correct order.
+    Every close bracket has a corresponding open bracket of the same type.
+
+function isValid(s) {
+    let stack = [];
+    let mapping = {
+        ')': '(',
+        '}': '{',
+        ']': '['
+    };
+    
+    for (let char of s) {
+        if (char in mapping) {
+            // Pop the top element from the stack, if it is non-empty
+            // Otherwise assign a dummy value of '#'
+            let topElement = stack.length === 0 ? '#' : stack.pop();
+            
+            // If the mapping for the current bracket doesn't match the stack's top element, return false
+            if (mapping[char] !== topElement) {
+                return false;
+            }
+        } else {
+            // If it's an opening bracket, push to the stack
+            stack.push(char);
+        }
+    }
+    
+    // If the stack is empty, all the brackets are properly closed
+    return stack.length === 0;
+}
