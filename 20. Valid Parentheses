@@ -14,28 +14,17 @@ An input string is valid if:
 
 function isValid(s) {
     let stack = [];
-    let mapping = {
-        ')': '(',
-        '}': '{',
-        ']': '['
-    };
-    
-    for (let char of s) {
-        if (char in mapping) {
-            // Pop the top element from the stack, if it is non-empty
-            // Otherwise assign a dummy value of '#'
-            let topElement = stack.length === 0 ? '#' : stack.pop();
-            
-            // If the mapping for the current bracket doesn't match the stack's top element, return false
-            if (mapping[char] !== topElement) {
-                return false;
-            }
-        } else {
-            // If it's an opening bracket, push to the stack
-            stack.push(char);
+    for (let i = 0; i < s.length; i++) {
+        let c = s[i];
+        if (c === '(') {
+            stack.push(')');
+        } else if (c === '{') {
+            stack.push('}');
+        } else if (c === '[') {
+            stack.push(']');
+        } else if (stack.length === 0 || stack.pop() !== c) {
+            return false;
         }
     }
-    
-    // If the stack is empty, all the brackets are properly closed
     return stack.length === 0;
 }
