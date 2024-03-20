@@ -1,0 +1,32 @@
+242. Valid Anagram
+Easy
+Topics
+Companies
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+ 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+
+function isAnagram(s, t) {
+  // Convert both strings to arrays, sort them, and then join them back to strings
+  const sortStr = str => str.split('').sort().join('');
+  
+  // Compare the sorted strings
+  return sortStr(s) === sortStr(t);
+}
+
+// Example usage
+console.log(isAnagram("anagram", "nagaram")); // true
+console.log(isAnagram("rat", "car")); // false
