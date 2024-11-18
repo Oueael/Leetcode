@@ -45,5 +45,33 @@ function findMaxAverage(nums, k) {
 
 // Example Usage
 console.log(findMaxAverage([1, 12, -5, -6, 50, 3], 4)); // Output: 12.75
+====================================================
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findMaxAverage = function(nums, k) {
+    let maxSeenAverage = -Infinity;
+    let currentSum = 0
+    let left = 0
+    let right = 0
+
+    while(right < nums.length) {
+        currentSum += nums[right]
+
+        // This is a valid window
+        // Do the calculations
+        if (right - left + 1 === k) {
+            let currentAverage = currentSum / k 
+            maxSeenAverage = Math.max(maxSeenAverage, currentAverage)
+
+            // Slide the window
+            // 1. recalculate sum of new window using previous work
+            // 2. increment the pointer
+            currentSum -= nums[left]
+            left++
+        }
+        right++
 console.log(findMaxAverage([5], 1)); // Output: 5.00
  
