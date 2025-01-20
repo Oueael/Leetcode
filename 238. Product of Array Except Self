@@ -1,0 +1,19 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+            # Step 1: Initialize arrays to store prefix and suffix products
+        n = len(nums)
+        answer = [1] * n  # Result array initialized with 1s
+        
+        # Step 2: Calculate prefix products for each element
+        prefix = 1  # Keeps track of the product of elements to the left of the current element
+        for i in range(n):
+            answer[i] = prefix  # Store the current prefix product in the answer
+            prefix *= nums[i]  # Update the prefix by multiplying the current number
+        
+        # Step 3: Calculate suffix products and combine with prefix products
+        suffix = 1  # Keeps track of the product of elements to the right of the current element
+        for i in range(n - 1, -1, -1):  # Loop backward
+            answer[i] *= suffix  # Multiply the current suffix product with the answer
+            suffix *= nums[i]  # Update the suffix by multiplying the current number
+        
+        return answer
