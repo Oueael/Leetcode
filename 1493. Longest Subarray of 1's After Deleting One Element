@@ -1,0 +1,48 @@
+1493. Longest Subarray of 1's After Deleting One Element
+Medium
+Topics
+Companies
+Hint
+
+Given a binary array nums, you should delete one element from it.
+
+Return the size of the longest non-empty subarray containing only 1's in the resulting array. Return 0 if there is no such subarray.
+
+ 
+
+Example 1:
+
+Input: nums = [1,1,0,1]
+Output: 3
+Explanation: After deleting the number in position 2, [1,1,1] contains 3 numbers with value of 1's.
+
+=========================
+def longestSubarray(nums):
+    # Initialize variables to track the window
+    curr_zeros = 0    # Count of zeros in current window
+    max_length = 0    # Length of longest valid subarray found
+    start = 0         # Start of sliding window
+    
+    # Iterate through the array using sliding window
+    for end in range(len(nums)):
+        # Count zeros in current window
+        if nums[end] == 0:
+            curr_zeros += 1
+        
+        # If we have more than one zero, shrink window from left
+        while curr_zeros > 1:
+            if nums[start] == 0:
+                curr_zeros -= 1
+            start += 1
+        
+        # Update max_length (subtract 1 for the deletion requirement)
+        max_length = max(max_length, end - start)
+    
+    # If no zeros found, we must delete one element, so return length-1
+    if curr_zeros == 0 and len(nums) > 0:
+        return len(nums) - 1
+        
+    return max_length
+
+# Test the function
+print(longestSubarray([1,1,0,1]))  # Output: 3
